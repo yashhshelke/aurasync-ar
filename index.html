@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraSync AR - Next Gen Hand Tracking</title>
+    <!-- MediaPipe Hands CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Start Overlay (Required for AudioContext initialization) -->
+    <div id="startOverlay">
+        <h1 class="glow-text">AURA SYNC</h1>
+        <p class="subtitle">Next-Gen Hand Tracking & Audio-Visual Experience</p>
+        <button class="start-btn" id="startBtn">Initialize Core</button>
+        <p class="permission-note">Requires Camera Access</p>
+    </div>
+
+    <div class="video-container">
+        <video class="input_video" autoplay playsinline></video>
+        <canvas id="bgCanvas"></canvas>
+        <canvas id="mainCanvas"></canvas>
+    </div>
+
+    <!-- UI Overlay -->
+    <div id="hud" class="hidden">
+        <div class="panel">
+            <div class="stat">Hands Active: <span class="val" id="ui-hands">0</span></div>
+            <div class="stat">FPS: <span class="val" id="ui-fps">0</span></div>
+        </div>
+        <div class="panel">
+            <div class="stat">Current Gesture: <span class="val" id="ui-gesture">None</span></div>
+            <div class="stat">Hand Spread: <span class="val" id="ui-spread">0%</span></div>
+        </div>
+    </div>
+
+    <div id="themes" class="hidden">
+        <button class="theme-btn active" data-theme="Prism">Prism</button>
+        <button class="theme-btn" data-theme="Neon">Neon</button>
+        <button class="theme-btn" data-theme="Magma">Magma</button>
+        <button class="theme-btn" data-theme="Abyss">Abyss</button>
+        <button class="theme-btn" data-theme="Cosmic">Cosmic</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
