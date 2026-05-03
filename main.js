@@ -93,19 +93,35 @@ function initAudio() {
     }
 }
 
-function triggerZap() {
+function playJaaduSound() {
     if (!audioCtx) return;
-    const osc = audioCtx.createOscillator();
-    const gainNode = audioCtx.createGain();
-    osc.type = 'sawtooth';
-    osc.frequency.setValueAtTime(800, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + 0.1);
-    gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
-    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
-    osc.connect(gainNode);
-    gainNode.connect(audioCtx.destination);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.15);
+    
+    const startTime = audioCtx.currentTime;
+    
+    // Play 6 "om" syllables 
+    for (let i = 0; i < 6; i++) {
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        
+        osc.type = 'triangle'; // Gives a slightly soft/alien harmonic tone
+        
+        const noteStart = startTime + i * 0.25;
+        
+        // Pitch drop effect for the "Oooom" sound
+        osc.frequency.setValueAtTime(250, noteStart);
+        osc.frequency.exponentialRampToValueAtTime(150, noteStart + 0.15);
+        
+        // Envelope: quick fade in, slower fade out
+        gainNode.gain.setValueAtTime(0, noteStart);
+        gainNode.gain.linearRampToValueAtTime(0.5, noteStart + 0.05);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, noteStart + 0.2);
+        
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        
+        osc.start(noteStart);
+        osc.stop(noteStart + 0.25);
+    }
 }
 
 function updateHum(activeHands) {
@@ -151,7 +167,7 @@ function detectGestures() {
                 y: (thumb.y + index.y) / 2
             };
             createShockwave(mapToCanvas(midpoint), themes[currentTheme](time, 1, 1));
-            triggerZap();
+            playJaaduSound();
             uiGesture.innerText = "PINCH !";
         }
         lastPinchState[idx] = isPinching;
