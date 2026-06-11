@@ -6,9 +6,6 @@
 A next-generation, browser-based Augmented Reality hand tracking experience. 
 **AuraSync** utilizes Google's MediaPipe framework combined with raw HTML5 Canvas physics engines to create a highly responsive, cyber-aesthetic, interactive audio-visual environment.
 
-
-
-
 ## 🌟 Features
 
 - **Real-time Skeleton Tracking**: Accurately tracks up to two hands simultaneously at 60FPS.
