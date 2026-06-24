@@ -1,7 +1,6 @@
 # AuraSync AR 
 
 ![AuraSync AR](https://img.shields.io/badge/Status-Active-brightgreen.svg)
-![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
 A next-generation, browser-based Augmented Reality hand tracking experience. 
 **AuraSync** utilizes Google's MediaPipe framework combined with raw HTML5 Canvas physics engines to create a highly responsive, cyber-aesthetic, interactive audio-visual environment.
